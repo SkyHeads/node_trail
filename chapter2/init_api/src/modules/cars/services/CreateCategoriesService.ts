@@ -1,23 +1,23 @@
-import { ICategoryRepository } from '../repositories/ICategoryRepository'
+import { ICategoriesRepository } from '../repositories/ICategoriesRepository'
 
 interface IRequest {
   name: string
   description: string
 }
 
-class CreateCategoryService {
+class CreateCategoriesService {
   // eslint-disable-next-line prettier/prettier
-  constructor(private categoriesRepository: ICategoryRepository) { }
+  constructor(private categoriesRepository: ICategoriesRepository) { }
 
   execute({ name, description }: IRequest): void {
     const findCategoryIfExists = this.categoriesRepository.findByName(name)
 
     if (findCategoryIfExists) {
-      throw new Error('User already exists.')
+      throw new Error('Category already exists.')
     }
 
     this.categoriesRepository.create({ name, description })
   }
 }
 
-export { CreateCategoryService }
+export { CreateCategoriesService }
