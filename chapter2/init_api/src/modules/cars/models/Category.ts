@@ -11,6 +11,8 @@ class Category {
 
   name: string
 
+  description: string
+
   created_at: Date
 }
 
