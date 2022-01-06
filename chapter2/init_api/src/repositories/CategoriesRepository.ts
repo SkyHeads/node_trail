@@ -1,18 +1,19 @@
 import { Category } from '../models/Category'
+import { ICategoryRepository } from './ICategoryRepository'
 
 export interface ICreateCategoryDTO {
   name: string
   description: string
 }
 
-class CategoriesRepository {
+class CategoriesRepository implements ICategoryRepository {
   private categories: Category[]
 
   constructor() {
     this.categories = []
   }
 
-  create({ name, description }: ICreateCategoryDTO): Category[] {
+  create({ name, description }: ICreateCategoryDTO): void {
     const category = new Category()
 
     Object.assign(category, {
@@ -22,8 +23,6 @@ class CategoriesRepository {
     })
 
     this.categories.push(category)
-
-    return this.categories
   }
 
   list(): Category[] {
