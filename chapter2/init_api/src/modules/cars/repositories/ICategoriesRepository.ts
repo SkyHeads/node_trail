@@ -1,5 +1,5 @@
 import { Category } from '../models/Category'
-import { ICreateCategories } from './CategoriesRepository'
+import { ICreateCategories } from './implementations/CategoriesRepository'
 
 interface ICategoriesRepository {
   findByName(name: string): Category
