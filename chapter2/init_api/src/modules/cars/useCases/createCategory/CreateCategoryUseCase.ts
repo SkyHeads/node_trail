@@ -1,3 +1,4 @@
+import { Category } from '../../models/Category'
 import { ICategoriesRepository } from '../../repositories/ICategoriesRepository'
 
 interface IRequest {
@@ -9,14 +10,16 @@ class CreateCategoryUseCase {
   // eslint-disable-next-line prettier/prettier
   constructor(private categoriesRepository: ICategoriesRepository) { }
 
-  execute({ name, description }: IRequest): void {
+  execute({ name, description }: IRequest): Category {
     const findCategoryIfExists = this.categoriesRepository.findByName(name)
 
     if (findCategoryIfExists) {
       throw new Error('Category already exists.')
     }
 
-    this.categoriesRepository.create({ name, description })
+    const category = this.categoriesRepository.create({ name, description })
+
+    return category
   }
 }
 

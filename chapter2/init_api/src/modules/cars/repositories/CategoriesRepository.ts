@@ -13,7 +13,7 @@ class CategoriesRepository implements ICategoriesRepository {
     this.categories = []
   }
 
-  create({ name, description }: ICreateCategories): void {
+  create({ name, description }: ICreateCategories): Category {
     const category = new Category()
 
     Object.assign(category, {
@@ -23,6 +23,8 @@ class CategoriesRepository implements ICategoriesRepository {
     })
 
     this.categories.push(category)
+
+    return category
   }
 
   list(): Category[] {
