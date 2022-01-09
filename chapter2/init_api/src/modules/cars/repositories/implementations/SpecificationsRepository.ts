@@ -7,11 +7,21 @@ import {
 class SpecificationRepository implements ISpecificationsRepository {
   private specifications: Specification[]
 
-  constructor() {
+  private static INSTANCE: SpecificationRepository
+
+  public static getInstance(): SpecificationRepository {
+    if (!SpecificationRepository.INSTANCE) {
+      SpecificationRepository.INSTANCE = new SpecificationRepository()
+    }
+
+    return SpecificationRepository.INSTANCE
+  }
+
+  private constructor() {
     this.specifications = []
   }
 
-  create({ name, description }: ICreateSpecificationsDTO) {
+  create({ name, description }: ICreateSpecificationsDTO): Specification {
     const specification = new Specification()
 
     Object.assign(specification, {
@@ -21,6 +31,8 @@ class SpecificationRepository implements ISpecificationsRepository {
     })
 
     this.specifications.push(specification)
+
+    return specification
   }
 
   findByName(name: string): Specification {
