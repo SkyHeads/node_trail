@@ -37,7 +37,19 @@ class ImportCategoryUseCase {
   // eslint-disable-next-line no-undef
   async execute(file: Express.Multer.File): Promise<void> {
     const categories = await this.loadCategories(file)
-    console.log(categories)
+
+    categories.map((category): void => {
+      const { name, description } = category
+
+      const existCategory = this.categoriesRepository.findByName(name)
+
+      if (!existCategory) {
+        this.categoriesRepository.create({
+          name,
+          description
+        })
+      }
+    })
   }
 }
 
