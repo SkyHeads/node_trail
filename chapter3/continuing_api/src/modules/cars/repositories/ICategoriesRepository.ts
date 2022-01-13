@@ -1,4 +1,4 @@
-import { Category } from '../models/Category'
+import { Category } from '../entities/Category'
 import { ICreateCategories } from './implementations/CategoriesRepository'
 
 interface ICategoriesRepository {
