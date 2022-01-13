@@ -1,6 +1,6 @@
 import {
   Entity,
-  PrimaryColumn,
+  PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
   UpdateDateColumn
@@ -8,8 +8,8 @@ import {
 
 @Entity('categories')
 class Category {
-  @PrimaryColumn()
-  id?: string
+  @PrimaryGeneratedColumn('uuid')
+  id: string
 
   @Column()
   name: string
