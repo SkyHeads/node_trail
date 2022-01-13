@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "tsnd --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts",
-    "start": "node dist/server.js"
+    "start": "node dist/server.js",
+    "typeorm": "tsnd ./node_modules/typeorm/cli"
   },
   "dependencies": {
     "csv-parse": "^5.0.4",
