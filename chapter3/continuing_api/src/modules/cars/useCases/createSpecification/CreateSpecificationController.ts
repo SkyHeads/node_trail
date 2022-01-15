@@ -1,15 +1,15 @@
 import { Request, Response } from 'express'
+import { container } from 'tsyringe'
 
 import { CreateSpecificationUseCase } from './CreateSpecificationUseCase'
 
 class CreateSpecificationController {
-  // eslint-disable-next-line prettier/prettier
-  constructor(private createSpecificationUseCase: CreateSpecificationUseCase) { }
-
-  handle(req: Request, res: Response): Response {
+  async handle(req: Request, res: Response): Promise<Response> {
     const { name, description } = req.body
 
-    const specification = this.createSpecificationUseCase.execute({
+    const createSpecificationUseCase = container.resolve(CreateSpecificationUseCase)
+
+    const specification = await createSpecificationUseCase.execute({
       name,
       description
     })

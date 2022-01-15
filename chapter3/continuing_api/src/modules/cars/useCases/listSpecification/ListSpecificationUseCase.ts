@@ -1,9 +1,14 @@
-import { Specification } from '../../entities/Specification'
-import { SpecificationRepository } from '../../repositories/implementations/SpecificationsRepository'
+import { inject, injectable } from 'tsyringe'
 
+import { Specification } from '../../entities/Specification'
+import { ISpecificationsRepository } from '../../repositories/ISpecificationsRepository'
+
+injectable()
 class ListSpecificationUseCase {
-  // eslint-disable-next-line prettier/prettier
-  constructor(private specificationRepository: SpecificationRepository) { }
+  constructor(
+    @inject('SpecificationsRepository')
+    private specificationRepository: ISpecificationsRepository
+  ) { }
 
   execute(): Specification[] {
     return this.specificationRepository.find()

@@ -1,15 +1,15 @@
 import { Request, Response } from 'express'
+import { container } from 'tsyringe'
 
 import { ImportCategoryUseCase } from './ImportCategoryUseCase'
 
 class ImportCategoryController {
-  // eslint-disable-next-line prettier/prettier
-  constructor(private importCategoryUseCase: ImportCategoryUseCase) { }
-
-  handle(req: Request, res: Response): Response {
+  async handle(req: Request, res: Response): Promise<Response> {
     const { file } = req
 
-    const importCategory = this.importCategoryUseCase.execute(file)
+    const importCategoryUseCase = container.resolve(ImportCategoryUseCase)
+
+    const importCategory = await importCategoryUseCase.execute(file)
 
     return res.status(200).json(importCategory)
   }
