@@ -3,15 +3,15 @@ import { inject, injectable } from 'tsyringe'
 import { Specification } from '../../entities/Specification'
 import { ISpecificationsRepository } from '../../repositories/ISpecificationsRepository'
 
-injectable()
+@injectable()
 class ListSpecificationUseCase {
   constructor(
     @inject('SpecificationsRepository')
     private specificationRepository: ISpecificationsRepository
   ) { }
 
-  execute(): Specification[] {
-    return this.specificationRepository.find()
+  async execute(): Promise<Specification[]> {
+    return this.specificationRepository.list()
   }
 }
 

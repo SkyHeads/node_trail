@@ -9,9 +9,9 @@ class ImportCategoryController {
 
     const importCategoryUseCase = container.resolve(ImportCategoryUseCase)
 
-    const importCategory = await importCategoryUseCase.execute(file)
+    await importCategoryUseCase.execute(file)
 
-    return res.status(200).json(importCategory)
+    return res.status(200).json()
   }
 }
 

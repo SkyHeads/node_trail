@@ -9,7 +9,7 @@ class ListCategoriesUseCase {
     @inject('CategoriesRepository')
     private categoriesRepository: ICategoriesRepository) { }
 
-  execute(): Promise<Category[]> {
+  async execute(): Promise<Category[]> {
     return this.categoriesRepository.list()
   }
 }
