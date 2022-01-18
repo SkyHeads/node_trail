@@ -1,3 +1,4 @@
+import { hash } from 'bcrypt'
 import { inject, injectable } from "tsyringe";
 
 import { IUsersRepository } from "../../repositories/IUsersRepository";
@@ -17,9 +18,17 @@ class CreateUserUseCase {
   ) { }
 
   async execute({ name, password, email, driver_license }: IRequest): Promise<void> {
+    const user = await this.usersRepository.findByEmail(email)
+
+    if (user) {
+      throw new Error('User Already Exists.')
+    }
+
+    const passwordHash = await hash(password, 8)
+
     const data = {
       name,
-      password,
+      password: passwordHash,
       email,
       driver_license
     }
