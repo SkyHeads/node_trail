@@ -4,7 +4,6 @@ import { IUsersRepository } from "../../repositories/IUsersRepository";
 
 interface IRequest {
   name: string
-  username: string
   password: string
   email: string
   driver_license: string
@@ -17,10 +16,9 @@ class CreateUserUseCase {
     private usersRepository: IUsersRepository
   ) { }
 
-  async execute({ name, username, password, email, driver_license }: IRequest): Promise<void> {
+  async execute({ name, password, email, driver_license }: IRequest): Promise<void> {
     const data = {
       name,
-      username,
       password,
       email,
       driver_license
