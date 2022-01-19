@@ -1,9 +1,5 @@
+import { ICreateSpecificationsDTO } from '../dtos/ICreateSpecificationsDTO'
 import { Specification } from '../entities/Specification'
-
-export interface ICreateSpecificationsDTO {
-  name: string
-  description: string
-}
 
 interface ISpecificationsRepository {
   findByName(name: string): Promise<Specification>
