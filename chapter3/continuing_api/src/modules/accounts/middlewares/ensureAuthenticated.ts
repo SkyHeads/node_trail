@@ -27,6 +27,10 @@ export async function ensureAuthenticated(req: Request, res: Response, next: Nex
       throw new Error('User does not exists!')
     }
 
+    req.user = {
+      id: user_id
+    }
+
     return next();
   } catch (err) {
     throw new Error(`JWT token is invalid, Message: ${err}`)
