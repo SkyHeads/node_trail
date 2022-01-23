@@ -1,5 +1,6 @@
 import express, { NextFunction, Request, Response } from 'express'
 import 'express-async-errors';
+import { MulterError } from 'multer';
 import swaggerUi from 'swagger-ui-express'
 
 import './database'
@@ -23,7 +24,12 @@ app.use((err: Error, req: Request, res: Response, _: NextFunction): Response => 
   if (err instanceof AppError) {
     return res.status(err.statusCode).json({
       status: 'error',
-      message: err.message
+      message: `AppError: ${err.message}`
+    })
+  } else if (err instanceof MulterError) {
+    return res.status(500).json({
+      status: 'error',
+      message: `MulterError: ${err.message}`
     })
   }
 

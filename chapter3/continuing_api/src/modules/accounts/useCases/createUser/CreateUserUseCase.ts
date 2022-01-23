@@ -31,7 +31,7 @@ class CreateUserUseCase {
       name,
       password: passwordHash,
       email,
-      driver_license
+      driver_license,
     }
 
     await this.usersRepository.create(data)
