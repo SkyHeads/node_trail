@@ -40,5 +40,5 @@ app.use((err: Error, req: Request, res: Response, _: NextFunction): Response => 
 })
 
 app.listen(3333, () => {
-  console.log('Server Online On Port 3333')
+  console.log('Server Online On Port 3333 🚀')
 })
