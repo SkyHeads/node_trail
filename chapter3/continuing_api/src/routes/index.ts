@@ -1,6 +1,7 @@
 import { Router } from 'express'
 
-import { ensureAuthenticated } from '../modules/accounts/middlewares/ensureAuthenticated'
+import { ensureAuthenticated } from '@modules/accounts/middlewares/ensureAuthenticated'
+
 import { authenticateRouter } from './authenticate.routes'
 import { categoriesRoutes } from './categories.routes'
 import { specificationsRouter } from './specifications.routes'
