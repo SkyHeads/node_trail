@@ -7,7 +7,7 @@
   "extends": [
     "standard",
     "plugin:@typescript-eslint/recommended",
-    "prettier-standard"
+    "prettier-standard/prettier-file"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -20,7 +20,7 @@
     "prettier"
   ],
   "rules": {
-    "prettier/prettier": "off",
+    "prettier/prettier": "error",
     "camelcase": "off",
     "import/no-unresolved": "error",
     "@typescript-eslint/naming-convention": [

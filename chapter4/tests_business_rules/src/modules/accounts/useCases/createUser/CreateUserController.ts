@@ -1,8 +1,7 @@
-import { Request, Response } from "express";
+import { Request, Response } from 'express'
 import { container } from 'tsyringe'
 
-import { CreateUserUseCase } from "./CreateUserUseCase";
-
+import { CreateUserUseCase } from './CreateUserUseCase'
 
 class CreateUserController {
   async handle(req: Request, res: Response): Promise<Response> {
@@ -14,7 +13,7 @@ class CreateUserController {
       name,
       password,
       email,
-      driver_license
+      driver_license,
     })
 
     return res.status(201).json(user)

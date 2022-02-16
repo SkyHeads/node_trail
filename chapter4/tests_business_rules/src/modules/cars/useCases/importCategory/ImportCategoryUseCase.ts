@@ -13,7 +13,8 @@ interface IImportCategory {
 class ImportCategoryUseCase {
   constructor(
     @inject('CategoriesRepository')
-    private categoriesRepository: ICategoriesRepository) { }
+    private categoriesRepository: ICategoriesRepository,
+  ) {}
 
   // eslint-disable-next-line no-undef
   loadCategories(file: Express.Multer.File): Promise<IImportCategory[]> {
@@ -25,7 +26,7 @@ class ImportCategoryUseCase {
       stream.pipe(parseFile)
 
       parseFile
-        .on('data', async (line) => {
+        .on('data', async line => {
           const [name, description] = line
 
           categories.push({ name, description })
@@ -34,7 +35,7 @@ class ImportCategoryUseCase {
           fs.promises.unlink(file.path)
           resolve(categories)
         })
-        .on('error', (err) => reject(err))
+        .on('error', err => reject(err))
     })
   }
 
@@ -50,7 +51,7 @@ class ImportCategoryUseCase {
       if (!existCategory) {
         await this.categoriesRepository.create({
           name,
-          description
+          description,
         })
       }
     })

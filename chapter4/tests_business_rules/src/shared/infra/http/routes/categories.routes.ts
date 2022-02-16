@@ -7,14 +7,18 @@ import { ListCategoriesController } from '@modules/cars/useCases/listCategories/
 
 const categoriesRoutes = Router()
 const upload = multer({
-  dest: './tmp'
+  dest: './tmp',
 })
 
 const createCategoryController = new CreateCategoryController()
 const importCategoryController = new ImportCategoryController()
 const listCategoriesController = new ListCategoriesController()
 
-categoriesRoutes.post('/import', upload.single('file'), importCategoryController.handle)
+categoriesRoutes.post(
+  '/import',
+  upload.single('file'),
+  importCategoryController.handle,
+)
 
 categoriesRoutes.post('/', createCategoryController.handle)
 

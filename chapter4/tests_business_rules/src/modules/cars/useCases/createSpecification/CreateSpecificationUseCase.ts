@@ -12,11 +12,12 @@ interface IRequest {
 class CreateSpecificationUseCase {
   constructor(
     @inject('SpecificationsRepository')
-    private specificationsRepository: ISpecificationsRepository
-  ) { }
+    private specificationsRepository: ISpecificationsRepository,
+  ) {}
 
   async execute({ name, description }: IRequest): Promise<void> {
-    const findSpecificationIfExists = await this.specificationsRepository.findByName(name)
+    const findSpecificationIfExists =
+      await this.specificationsRepository.findByName(name)
 
     if (findSpecificationIfExists) {
       throw new AppError('Specification already exists.', 403)
@@ -24,7 +25,7 @@ class CreateSpecificationUseCase {
 
     await this.specificationsRepository.create({
       name,
-      description
+      description,
     })
   }
 }

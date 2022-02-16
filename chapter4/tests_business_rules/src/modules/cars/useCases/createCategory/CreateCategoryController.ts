@@ -10,7 +10,7 @@ class CreateCategoryController {
 
     const category = await createCategoryUseCase.execute({
       name,
-      description
+      description,
     })
 
     return res.status(201).json(category)

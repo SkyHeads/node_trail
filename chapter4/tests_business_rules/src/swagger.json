@@ -1,13 +1,13 @@
 {
-	"openapi": "3.0.0",
-	"info": {
-		"title": "RentX Documentation",
-		"description": "This is an API Rent",
-		"version": "1.0.0",
-		"contact": {
-			"email": "skyheads@live.com"
-		}
-	},
+  "openapi": "3.0.0",
+  "info": {
+    "title": "RentX Documentation",
+    "description": "This is an API Rent",
+    "version": "1.0.0",
+    "contact": {
+      "email": "skyheads@live.com"
+    }
+  },
   "paths": {
     "/categories": {
       "post": {
@@ -167,4 +167,3 @@
     }
   }
 }
-

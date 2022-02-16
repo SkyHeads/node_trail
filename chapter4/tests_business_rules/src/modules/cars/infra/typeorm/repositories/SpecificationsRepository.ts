@@ -5,8 +5,6 @@ import { ISpecificationsRepository } from '@modules/cars/repositories/ISpecifica
 
 import { Specification } from '../entities/Specification'
 
-
-
 class SpecificationsRepository implements ISpecificationsRepository {
   private repository: Repository<Specification>
 

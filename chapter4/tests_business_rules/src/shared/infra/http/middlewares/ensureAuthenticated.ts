@@ -1,15 +1,19 @@
-import { NextFunction, Request, Response } from "express";
-import { verify } from "jsonwebtoken";
+import { NextFunction, Request, Response } from 'express'
+import { verify } from 'jsonwebtoken'
 
-import { UsersRepository } from "@modules/accounts/infra/typeorm/repositories/UsersRepository";
+import { UsersRepository } from '@modules/accounts/infra/typeorm/repositories/UsersRepository'
 
-import { AppError } from "../../../errors/AppError";
+import { AppError } from '../../../errors/AppError'
 
 interface IPayload {
   sub: string
 }
 
-export async function ensureAuthenticated(req: Request, res: Response, next: NextFunction): Promise<void> {
+export async function ensureAuthenticated(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> {
   const authHeader = req.headers.authorization
 
   if (!authHeader) {
@@ -19,7 +23,10 @@ export async function ensureAuthenticated(req: Request, res: Response, next: Nex
   const [, token] = authHeader.split(' ')
 
   try {
-    const { sub: user_id } = verify(token, '634dbcdcec995f2a01edce3dc03badb8') as IPayload
+    const { sub: user_id } = verify(
+      token,
+      '634dbcdcec995f2a01edce3dc03badb8',
+    ) as IPayload
 
     const usersRepository = new UsersRepository()
 
@@ -30,10 +37,10 @@ export async function ensureAuthenticated(req: Request, res: Response, next: Nex
     }
 
     req.user = {
-      id: user_id
+      id: user_id,
     }
 
-    return next();
+    return next()
   } catch (err) {
     throw new AppError(`JWT token is invalid, Message: ${err}.`, 401)
   }

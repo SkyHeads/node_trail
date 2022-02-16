@@ -14,10 +14,12 @@ const createUserController = new CreateUserController()
 const updateUserAvatarController = new UpdateUserAvatarController()
 
 usersRoutes.post('/', createUserController.handle)
-usersRoutes.patch('/avatar',
+
+usersRoutes.patch(
+  '/avatar',
   ensureAuthenticated,
   upload.single('avatar'),
-  updateUserAvatarController.handle
+  updateUserAvatarController.handle,
 )
 
 export { usersRoutes }

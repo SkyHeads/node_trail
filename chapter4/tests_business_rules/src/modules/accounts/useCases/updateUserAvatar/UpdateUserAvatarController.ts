@@ -1,7 +1,7 @@
-import { Request, Response } from "express";
-import { container } from "tsyringe";
+import { Request, Response } from 'express'
+import { container } from 'tsyringe'
 
-import { UpdateUserAvatarUseCase } from "./UpdateUserAvatarUseCase";
+import { UpdateUserAvatarUseCase } from './UpdateUserAvatarUseCase'
 
 class UpdateUserAvatarController {
   async handle(req: Request, res: Response): Promise<Response> {
@@ -14,7 +14,7 @@ class UpdateUserAvatarController {
 
     await updateUserAvatarUseCase.execute({
       user_id: id,
-      avatar_file: filename
+      avatar_file: filename,
     })
 
     return res.status(204).json()

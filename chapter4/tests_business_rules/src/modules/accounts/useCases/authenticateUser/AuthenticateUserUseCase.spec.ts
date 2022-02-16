@@ -1,8 +1,8 @@
-import { AppError } from "../../../../shared/errors/AppError"
-import { ICreateUserDTO } from "../../dtos/ICreateUserDTO"
-import { UsersRepositoryInMemory } from "../../repositories/in-memory/UsersRepositoryInMemory"
-import { CreateUserUseCase } from "../createUser/CreateUserUseCase"
-import { AuthenticateUserUseCase } from "./AuthenticateUserUseCase"
+import { AppError } from '../../../../shared/errors/AppError'
+import { ICreateUserDTO } from '../../dtos/ICreateUserDTO'
+import { UsersRepositoryInMemory } from '../../repositories/in-memory/UsersRepositoryInMemory'
+import { CreateUserUseCase } from '../createUser/CreateUserUseCase'
+import { AuthenticateUserUseCase } from './AuthenticateUserUseCase'
 
 let authenticateUserUseCase: AuthenticateUserUseCase
 let usersRepositoryInMemory: UsersRepositoryInMemory
@@ -12,7 +12,9 @@ describe('Authenticate User', () => {
   beforeEach(() => {
     usersRepositoryInMemory = new UsersRepositoryInMemory()
     createUserUseCase = new CreateUserUseCase(usersRepositoryInMemory)
-    authenticateUserUseCase = new AuthenticateUserUseCase(usersRepositoryInMemory)
+    authenticateUserUseCase = new AuthenticateUserUseCase(
+      usersRepositoryInMemory,
+    )
   })
 
   it('should be able to authenticate user', async () => {
@@ -20,14 +22,14 @@ describe('Authenticate User', () => {
       driver_license: '1234567',
       email: 'test@test.com',
       password: '123456',
-      name: 'test'
+      name: 'test',
     }
 
     await createUserUseCase.execute(user)
 
     const result = await authenticateUserUseCase.execute({
       email: user.email,
-      password: user.password
+      password: user.password,
     })
 
     expect(result).toHaveProperty('token')
@@ -39,14 +41,14 @@ describe('Authenticate User', () => {
         driver_license: '1234567',
         email: 'test@test.com',
         password: '123456',
-        name: 'test'
+        name: 'test',
       }
 
       await createUserUseCase.execute(user)
 
       await authenticateUserUseCase.execute({
         email: user.email,
-        password: 'wrong password'
+        password: 'wrong password',
       })
     }).rejects.toBeInstanceOf(AppError)
   })
@@ -57,14 +59,14 @@ describe('Authenticate User', () => {
         driver_license: '1234567',
         email: 'test@test.com',
         password: '123456',
-        name: 'test'
+        name: 'test',
       }
 
       await createUserUseCase.execute(user)
 
       await authenticateUserUseCase.execute({
         email: 'wrong email',
-        password: user.password
+        password: user.password,
       })
     }).rejects.toBeInstanceOf(AppError)
   })

@@ -3,9 +3,9 @@ import {
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
 } from 'typeorm'
-import { v4 as uuidV4 } from "uuid"
+import { v4 as uuidV4 } from 'uuid'
 
 @Entity('specifications')
 class Specification {
@@ -26,7 +26,7 @@ class Specification {
 
   constructor() {
     if (!this.id) {
-      this.id = uuidV4();
+      this.id = uuidV4()
     }
   }
 }
