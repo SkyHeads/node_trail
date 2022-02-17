@@ -14,6 +14,6 @@ router.use('/categories', ensureAuthenticated, categoriesRoutes)
 router.use('/specifications', ensureAuthenticated, specificationsRouter)
 router.use('/users', usersRoutes)
 router.use('/sessions', authenticateRouter)
-router.use('/cars', carRouter)
+router.use('/cars', ensureAuthenticated, carRouter)
 
 export { router }
