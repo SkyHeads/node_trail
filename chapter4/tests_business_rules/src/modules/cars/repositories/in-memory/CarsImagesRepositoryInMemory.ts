@@ -17,6 +17,10 @@ class CarsImagesRepositoryInMemory implements ICarsImagesRepository {
 
     return carImage
   }
+
+  async list(): Promise<CarImage[]> {
+    return this.cars
+  }
 }
 
 export { CarsImagesRepositoryInMemory }
