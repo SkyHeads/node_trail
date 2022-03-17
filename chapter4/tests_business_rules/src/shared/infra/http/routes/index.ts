@@ -5,6 +5,7 @@ import { ensureAuthenticated } from '@shared/infra/http/middlewares/ensureAuthen
 import { authenticateRouter } from './authenticate.routes'
 import { carRouter } from './cars.routes'
 import { categoriesRoutes } from './categories.routes'
+import { rentalsRouter } from './rentals.routes'
 import { specificationsRouter } from './specifications.routes'
 import { usersRoutes } from './users.routes'
 
@@ -15,5 +16,6 @@ router.use('/specifications', ensureAuthenticated, specificationsRouter)
 router.use('/users', usersRoutes)
 router.use('/sessions', authenticateRouter)
 router.use('/cars', ensureAuthenticated, carRouter)
+router.use('/rentals', ensureAuthenticated, rentalsRouter)
 
 export { router }
